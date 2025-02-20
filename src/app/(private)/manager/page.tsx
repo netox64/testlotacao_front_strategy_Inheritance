@@ -1,4 +1,5 @@
 import { Card } from "@/components/atons/Card";
+import { GetErrorPermission } from "@/components/shared/GetErrorPermission";
 import HomeIcon from "@heroicons/react/16/solid/HomeIcon";
 import React from "react";
 
@@ -10,7 +11,9 @@ const stats = [
 ];
 
 export default function Manager() {
-    return (<div className='w-full min-h-[100vh]'>
+    return (
+    <div className='w-full min-h-[100vh]'>
+        <GetErrorPermission />
         <div className="min-h-screen flex py-4 justify-center bg-gray-100">
             <div className="space-y-6">
                 <div className="text-center">

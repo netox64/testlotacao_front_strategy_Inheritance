@@ -4,9 +4,8 @@ import React, { useState } from "react";
 import XCircleIcon from "@heroicons/react/16/solid/XCircleIcon";
 import HomeModernIcon from "@heroicons/react/16/solid/HomeModernIcon";
 import Link from "next/link";
-export interface ISideBarProps { }
 
-export const SideBar: React.FC<ISideBarProps> = () => {
+export const SideBar: React.FC = () => {
     const [isOpen, setIsOpen] = useState(false);
 
     const toggleSidebar = () => {
