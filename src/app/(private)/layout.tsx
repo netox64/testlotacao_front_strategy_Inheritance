@@ -5,6 +5,7 @@ import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
 import { Header } from "@/components/shared/Header";
 import { SpaceToast } from "@/components/shared/SpaceToast";
+import { SideBar } from "@/components/shared/SideBar";
 
 const geistSans = Geist({
     variable: "--font-geist-sans",
@@ -30,8 +31,15 @@ export default async function RootLayout({ children, }: Readonly<{ children: Rea
         <html lang="pt-br">
             <body className={`${geistSans.variable} ${geistMono.variable} antialiased w-full min-h-[100vh]`}>
                 <Header />
-                <SpaceToast/>
-                {children}
+                <SpaceToast />
+                <div className="flex">
+                    <div className="w-1/10 md:w-1/6 lg:w-1/5">
+                        <SideBar />
+                    </div>
+                    <div className="flex-1">
+                        {children}
+                    </div>
+                </div>
             </body>
         </html>
     );
