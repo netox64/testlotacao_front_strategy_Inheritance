@@ -1,10 +1,9 @@
 import NextAuth from "next-auth/next";
 import CredentialsProvider from "next-auth/providers/credentials";
-import { requestAuthenticationUser } from "../../requests-api";
 import { cookies } from "next/headers";
+import { requestAuthenticationUser } from "../../request-api";
 import { decoderTokenToClaims } from "../../decode-claims";
 
-//define tipo do usuario
 type Usuario = { id: string; name?: string | null; email?: string | null; image?: string; role?: string | string[] | null; };
 export interface ICredentials { email: string | undefined; password: string | undefined; };
 
