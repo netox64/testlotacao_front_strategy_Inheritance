@@ -23,7 +23,7 @@ export default async function RootLayout({ children, }: Readonly<{ children: Rea
             <body className={`${geistSans.variable} ${geistMono.variable} antialiased w-full min-h-[100vh]`}>
                 <Header />
                 <SpaceToast />
-                <LoadContext />
+                <LoadContext>
                 <div className="flex">
                     <div className="w-1/10 md:w-1/6 lg:w-1/5">
                         <SideBar />
@@ -32,6 +32,7 @@ export default async function RootLayout({ children, }: Readonly<{ children: Rea
                         {children}
                     </div>
                 </div>
+                </LoadContext>
             </body>
         </html>
     );

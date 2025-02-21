@@ -1,10 +1,31 @@
-import { Caravana, Cidade, Comentario, Motorista, Onibus, Organizador, Participante, Postagem } from "./modeltypes";
+import { Motorista, Organizador, Participante } from "./modeltypes";
 
-export async function getAllParticipantes(): Promise<Participante[]> { return [] as Participante[]; }
-export async function getAllOrganizadores(): Promise<Organizador[]> { return [] as Organizador[]; }
-export async function getAllMotoristas(): Promise<Motorista[]> { return [] as Motorista[]; }
-export async function getAllPostagens(): Promise<Postagem[]> { return [] as Postagem[]; }
-export async function getAllComentarios(): Promise<Comentario[]> { return [] as Comentario[]; }
-export async function getAllCidades(): Promise<Cidade[]> { return [] as Cidade[]; }
-export async function getAllFrota(): Promise<Onibus[]> { return [] as Onibus[]; }
-export async function getAllCaravanas(): Promise<Caravana[]> { return [] as Caravana[]; }
+export async function getAll<T>(endpoint: string): Promise<T[]> {
+    try {
+        const response = await fetch(`http://localhost:3000/api/${endpoint}`);
+        if (!response.ok) {
+            return [];
+        }
+        return await response.json();
+    } catch (error) {
+        console.error(`Erro ao buscar ${endpoint}:`, error);
+        return [];
+    }
+}
+
+//TODO: no need to pass the user ID because someone is already logged in, via token (need to redeem token)
+export async function getPersona<T extends Participante | Motorista | Organizador>(endpoint: string): Promise<T | null> {
+    try {
+        const response = await fetch(`http://localhost:3000/api/usuarios/getlogado/${endpoint}`);
+
+        if (!response.ok) {
+            return null;
+        }
+
+        const usuario: T = await response.json();
+        return usuario;
+    } catch (error) {
+        console.error("Erro ao buscar persona:", error);
+        return null;
+    }
+}
